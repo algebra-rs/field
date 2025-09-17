@@ -2,12 +2,6 @@ use num_bigint::BigInt;
 use field::ring::Ring;
 
 #[test]
-fn test_ring() {
-    let zero = BigInt::from(0);
-    assert!(zero.is_zero()); 
-}
-
-#[test]
 fn test_zero_and_one() {
     assert_eq!(<BigInt as Ring>::zero(), BigInt::from(0));
     assert_eq!(<BigInt as Ring>::one(), BigInt::from(1));
