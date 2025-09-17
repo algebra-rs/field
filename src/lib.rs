@@ -22,7 +22,7 @@ pub trait Field: Ring + Sized + Eq + Copy + Clone + Default {
     fn sqrt_ratio(num: &Self, div: &Self) -> (bool, Self);
 
     fn sqrt_alt(&self) -> (bool, Self) {
-        Self::sqrt_ratio(self, &Self::ONE)
+        Self::sqrt_ratio(self, &Self::one())
     }
 
     fn sqrt(&self) -> Option<Self>;

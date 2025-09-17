@@ -1,5 +1,5 @@
-use rand_core::RngCore;
-use std::ops::{Add, Mul, Neg, Sub};
+use num_bigint::BigInt;
+use std::ops::{Add, Sub, Mul, Neg};
 
 pub trait Ring:
     Sized
@@ -10,17 +10,19 @@ pub trait Ring:
     + Mul<Output = Self>
     + Neg<Output = Self>
 {
-    const ZERO: Self;
-
-    const ONE: Self;
-
-    fn random(rng: impl RngCore) -> Self;
+    fn zero() -> Self;
+    fn one() -> Self;
 
     fn from_i64(n: i64) -> Self;
 
     fn is_zero(&self) -> bool {
-        self == &Self::ZERO
+        self == &Self::zero()
     }
 }
 
-pub trait CommutativeRing: Ring {}
+impl Ring for BigInt {
+    fn zero() -> Self { BigInt::from(0) }
+    fn one() -> Self { BigInt::from(1) }
+
+    fn from_i64(n: i64) -> Self { BigInt::from(n) }
+}
